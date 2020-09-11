@@ -1,0 +1,8 @@
+README.md
+setup.py
+walmart/__init__.py
+walmart/walmart.py
+walmart.egg-info/PKG-INFO
+walmart.egg-info/SOURCES.txt
+walmart.egg-info/dependency_links.txt
+walmart.egg-info/top_level.txt
