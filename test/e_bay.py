@@ -3,11 +3,6 @@ from bs4 import BeautifulSoup
 import json
 import csv
 
-
-
-
-
-
 def e_bay(product):
     """
     this function will take the name of product as argument then
@@ -17,49 +12,52 @@ def e_bay(product):
     url = f'https://www.ebay.com/sch/i.html?_nkw={product}'
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
+    all_data = [['title','price','links']]
 
+    elements = soup.find_all('li',class_ = 's-item')
 
-    try:
-        
-        title = soup.find_all('h3',class_ = 's-item__title s-item__title--has-tags')
-        all_title = [item.text for item in title]
-    except:
-        all_title = []
+    for li in elements:
+        try:
+            one_item = []
+            title = li.find('h3').text
+            one_item.append(title)
+            price = li.find('span',class_ = 's-item__price').text.split(' ')[0]
+            one_item.append(price)
+            link = li.find('a',class_ = 's-item__link').get('href')
+            one_item.append(link)
+            all_data.append(one_item)
 
-    try:
-        price = soup.find_all('span',class_ = 's-item__price')
-        all_price = [item.text.split(' ')[0] for item in price]
-    except:
-        all_price = []
+        except:
+            continue
 
-
-
-    try:
-        links = soup.find_all('a',class_ = 's-item__link')
-        all_links = [item.get('href') for item in links]
-    except:
-        all_links = []
-    
-    i = 0
-    all_data = []
-    all_data.append(['title','price','links'])
-    while i < 10:
-        all_data.append([all_title[i],all_price[i],all_links[i]])
-        i +=1
-
-
-    
-    
     with open('ebay_data.csv', 'w', newline='') as file:
         writer = csv.writer(file, delimiter=',')
         writer.writerows(all_data)
 
-
-
-
 if __name__ == "__main__":
     e_bay('apple watch')
+
+
+
+  
+        
+
+
     
+
+    
+   
+
+    
+
+    
+    
+    
+
+
+
+
+
 
     
     
