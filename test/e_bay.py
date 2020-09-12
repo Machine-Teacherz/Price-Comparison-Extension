@@ -4,10 +4,6 @@ import json
 import csv
 
 
-
-
-
-
 def e_bay(product):
     """
     this function will take the name of product as argument then
