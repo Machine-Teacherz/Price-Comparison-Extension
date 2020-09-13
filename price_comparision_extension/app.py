@@ -93,3 +93,14 @@ def get_prices():
                 continue
             # elif choice == 'r':
             #     choice_pro_id = input('insert your product id : ')
+            #     if new_list[choice_pro_id][2] == 'e_bay':
+            #         new_line = # e_bay link method
+            #     elif new_list[choice_pro_id][2] == 'walmart':
+            #         new_line = # walmart link method
+            #     elif new_list[choice_pro_id][2] == 'newegg':
+            #         new_line = # newegg link method
+            #     elif new_list[choice_pro_id][2] == 'etsy':
+            #         new_line = # etsy link method
+
+
+                # new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,datetime.datetime.now()
