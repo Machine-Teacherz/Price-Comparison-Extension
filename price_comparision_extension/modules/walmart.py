@@ -62,7 +62,10 @@ def walmart(product):
     # with open('walmart_data.csv', 'w', newline='') as file:
     #     writer = csv.writer(file, delimiter=',')
     #     writer.writerows(all_data)  
-
+def wal_price(url):
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser').find('span',class_ = 'price-characteristic').get('content')
+    return soup
 
 if __name__ == "__main__":
     print(walmart('tv'))
