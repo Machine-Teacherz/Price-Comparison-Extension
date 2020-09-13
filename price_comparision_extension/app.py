@@ -79,4 +79,17 @@ def get_prices():
 
             for i in range(len(new_list)):
                 if user == new_list[i][0]:
-                    print(f'{i} | "{new_list[i][1]}" | from : "{new_list[i][3]}" | and it was by : "{new_list[i][4]}$" | 
+                    print(f'{i} | "{new_list[i][1]}" | from : "{new_list[i][3]}" | and it was by : "{new_list[i][4]}$" | last cheak was in : "{new_list[i][5]}"')
+                    y = True
+            if not y:
+                print('your favorite still empty.. :(')
+            
+            choice = input('\n\nwant to edit your fav?\n - (d)elete products\n - (r)e cheak product price\n\n (n)o thank you..\n > ').lower()
+            
+            if choice == 'd':
+                choice_pro_id = int(input('insert your product id : '))
+                del new_list[choice_pro_id]
+                print('done!')
+                continue
+            # elif choice == 'r':
+            #     choice_pro_id = input('insert your product id : ')
