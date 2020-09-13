@@ -12,7 +12,7 @@ import datetime
 def get_prices():
 
     user = None
-    now = datetime.datetime.now()
+    # now = datetime.datetime.now()
 
     def what_do_u_want():
         choice = input(f'what do you want to do {user}?\n - (n)ew search?\n - (v)iew my favorite?\n - (s)ign out\n > ').lower()
@@ -35,34 +35,53 @@ def get_prices():
 
         with open('../saves.csv', 'a', newline='') as file:
             writer = csv.writer(file, delimiter=',')
-            writer.writerows([[user,newlist[choice_pro-1].title,newlist[choice_pro-1].link, newlist[choice_pro-1].website, newlist[choice_pro-1].price, now]])
+            writer.writerows([[user,newlist[choice_pro-1].title,newlist[choice_pro-1].link, newlist[choice_pro-1].website, newlist[choice_pro-1].price, datetime.datetime.now()]])
 
 
     def view_my_fav():
-        with open('../saves.csv', 'r') as csv_file:
+        choice = None
+        while choice != 'n':
+            with open('../saves.csv', 'r') as csv_file:
 
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            new_list = [[ii for ii in i] for i in csv_reader]
+                csv_reader = csv.reader(csv_file, delimiter=',')
+                new_list = [[ii for ii in i] for i in csv_reader]
 
-            print('product id , -------product name------- , ---website--- , ---price--- , ---date--- \n')
-            y = False
-            for i in new_list:
-                if user == i[0]:
-                    print(f'{i}, {i[1]} from {i[3]} and it was {i[4]}$ , last cheak was in: {i[5]}\n')
-                    y = True
-            if not y:
-                print('your favorite still empty.. :(')
-            
-            choice = input('want to edit your fav?\n - (d)elete products\n - (r)e cheak product price\n\n (n)o thank you..').lower()
-            while choice not 'n':
+                print('product id , -------product name------- , ---website--- , ---price--- , ---date--- \n')
+                y = False
+                for i in new_list:
+                    if user == i[0]:
+                        print(f'{i}, {i[1]} from {i[3]} and it was {i[4]}$ , last cheak was in: {i[5]}\n')
+                        y = True
+                if not y:
+                    print('your favorite still empty.. :(')
+                
+                choice = input('want to edit your fav?\n - (d)elete products\n - (r)e cheak product price\n\n (n)o thank you..').lower()
+                
                 if choice == 'd':
                     choice_pro_id = input('insert your product id : ')
                     del new_list[choice_pro_id]
                     print('done!')
+                    continue
+                # elif choice == 'r':
+                #     choice_pro_id = input('insert your product id : ')
+                #     if new_list[choice_pro_id][2] == 'e_bay':
+                #         new_line = # e_bay link method
+                #     elif new_list[choice_pro_id][2] == 'walmart':
+                #         new_line = # walmart link method
+                #     elif new_list[choice_pro_id][2] == 'newegg':
+                #         new_line = # newegg link method
+                #     elif new_list[choice_pro_id][2] == 'etsy':
+                #         new_line = # etsy link method
+
+
+                    new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,datetime.datetime.now()
+                    continue
+
                 
 
-            what_do_u_want()
+        what_do_u_want()
     
+
     def sign_up():
         with open('../users.csv', 'r') as csv_file:
 
