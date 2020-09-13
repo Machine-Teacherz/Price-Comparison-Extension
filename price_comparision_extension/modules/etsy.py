@@ -46,6 +46,12 @@ def etsy(product):
     #     writer = csv.writer(file, delimiter=',')
     #     writer.writerows(all_data)
 
+def etsy_price(url):
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser').find('p',class_='wt-mr-xs-2').text.split('$')[1].split('+')[0]
+
+    return soup
+
 if __name__ == "__main__":
     print(etsy('phone'))
 
