@@ -66,4 +66,17 @@ def get_prices():
             new_list = [[ii for ii in i] for i in csv_reader]
             
             last_list = []
- 
+            for row in csv_reader:
+                last_list.append(row)
+                for field in row:
+                    if field == user:
+                        last_list.remove(row)
+
+        while choice != 'n':
+
+            print('\n\nproduct id | -------product name------- | ---website--- | ---price--- | ---date--- \n')
+            y = False
+
+            for i in range(len(new_list)):
+                if user == new_list[i][0]:
+                    print(f'{i} | "{new_list[i][1]}" | from : "{new_list[i][3]}" | and it was by : "{new_list[i][4]}$" | 
