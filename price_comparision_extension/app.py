@@ -9,7 +9,8 @@ import csv
 
 def get_prices():
 
-    
+    users = None
+
     def sign_up():
         with open('users.csv') as csv_file:
         # df = pd.read_csv("../users.csv")
@@ -25,15 +26,21 @@ def get_prices():
                         print('the name is already taken!!')
                         y = True
                 if y:
+
                     continue
                 else:
                     break
 
-        password = input('your password : ')
-        with open('users.csv', 'a', newline='') as file:
-            writer = csv.writer(file, delimiter=',')
+            password = input('your password : ')
+        # with open('users.csv', 'a', newline='') as file:
+            writer = csv.writer(csv_file, delimiter=',')
             writer.writerows([[user, password]])
-        choice = input('what do want to do?\n - (n)ew search?\n - (v)iew my favorite?')
+            csv_file.close()
+        choice = input('what do want to do?\n - (n)ew search?\n - (v)iew my favorite? ').lower()
+        if choice == 'n':
+            new_search()
+        elif choice == 'v':
+            # view_my_fav()
     
     def new_search():
         product = input('what are you looking for? : ')
