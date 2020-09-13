@@ -115,3 +115,22 @@ def get_prices():
 
         what_do_u_want()
     
+
+    def sign_up():
+        global user
+        with open('../users.csv', 'r') as csv_file:
+
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            new_list = [[ii for ii in i] for i in csv_reader]
+
+            while True:
+                user = input('what is your name? : ')
+                y = False
+                for i in new_list:
+                    if user in i:
+                        print('the name is already taken!!')
+                        y = True
+                if y:
+                    continue
+                else:
+                    break
