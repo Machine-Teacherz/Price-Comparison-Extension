@@ -1,7 +1,7 @@
-from modules.e_bay import e_bay
-from modules.etsy import etsy
-from modules.newegg import newegg
-from modules.walmart import walmart
+from modules.e_bay import e_bay, e_bay_price
+from modules.etsy import etsy, etsy_price
+from modules.newegg import newegg, newegg_price
+from modules.walmart import walmart, wal_price
 import csv
 import datetime
 import sys
@@ -92,16 +92,16 @@ def get_prices():
                 del new_list[choice_pro_id]
                 print('done!')
                 continue
-            # elif choice == 'r':
-            #     choice_pro_id = input('insert your product id : ')
-            #     if new_list[choice_pro_id][2] == 'e_bay':
-            #         new_line = # e_bay link method
-            #     elif new_list[choice_pro_id][2] == 'walmart':
-            #         new_line = # walmart link method
-            #     elif new_list[choice_pro_id][2] == 'newegg':
-            #         new_line = # newegg link method
-            #     elif new_list[choice_pro_id][2] == 'etsy':
-            #         new_line = # etsy link method
+            elif choice == 'r':
+                choice_pro_id = input('\ninsert your product id : ')
+                if new_list[choice_pro_id][3] == 'e_bay':
+                    new_line = e_bay_price(new_list[choice_pro_id][2])
+                elif new_list[choice_pro_id][3] == 'walmart':
+                    new_line = wal_price(new_list[choice_pro_id][2])
+                elif new_list[choice_pro_id][3] == 'newegg':
+                    new_line = newegg_price(new_list[choice_pro_id][2])
+                elif new_list[choice_pro_id][3] == 'etsy':
+                    new_line = etsy_price(new_list[choice_pro_id][2])
 
 
                 # new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,now)
