@@ -49,4 +49,21 @@ def get_prices():
                     writer = csv.writer(file, delimiter=',')
                     writer.writerows([[user,newlist[choice_pro-1].title,newlist[choice_pro-1].link, newlist[choice_pro-1].website, newlist[choice_pro-1].price, datetime.datetime.now()]])
                 print('\n add to your favorite.. :)')
+                what_do_u_want()
+                break
+            elif sure == 'n':
+                what_do_u_want()
+                break
+            sure = input('\nwant to save any of them? (y)es or (n)o? ').lower()
+
+
+    def view_my_fav():
+        choice = None
+        new_list = []
+        with open('../saves.csv', 'r') as csv_file:
+
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            new_list = [[ii for ii in i] for i in csv_reader]
+            
+            last_list = []
  
