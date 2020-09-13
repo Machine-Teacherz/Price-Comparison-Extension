@@ -12,7 +12,8 @@ user = None
 def get_prices():
 
     
-    # now = datetime.datetime.now()
+    now = datetime.datetime.now()
+    now = now.strftime("%Y-%m-%d %H:%M:%S")
 
     def what_do_u_want():
         choice = input(f'\n\nwhat do you want to do {user}?\n - (n)ew search?\n - (v)iew my favorite?\n - (s)ign out\n - (ex)it\n > ').lower()
@@ -47,7 +48,7 @@ def get_prices():
 
                 with open('../saves.csv', 'a', newline='') as file:
                     writer = csv.writer(file, delimiter=',')
-                    writer.writerows([[user,newlist[choice_pro-1].title,newlist[choice_pro-1].link, newlist[choice_pro-1].website, newlist[choice_pro-1].price, datetime.datetime.now()]])
+                    writer.writerows([[user,newlist[choice_pro-1].title,newlist[choice_pro-1].link, newlist[choice_pro-1].website, newlist[choice_pro-1].price, now]])
                 print('\n add to your favorite.. :)')
                 what_do_u_want()
                 break
@@ -103,7 +104,7 @@ def get_prices():
             #         new_line = # etsy link method
 
 
-                # new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,datetime.datetime.now()
+                # new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,now)
                 # continue
 
         with open('../saves.csv', 'w') as writeFile:
