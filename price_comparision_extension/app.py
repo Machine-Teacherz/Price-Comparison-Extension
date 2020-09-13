@@ -87,7 +87,7 @@ def get_prices():
             choice = input('\n\nwant to edit your fav?\n - (d)elete products\n - (r)e cheak product price\n\n (n)o thank you..\n > ').lower()
             
             if choice == 'd':
-                choice_pro_id = int(input('insert your product id : '))
+                choice_pro_id = int(input('\ninsert your product id : '))
                 del new_list[choice_pro_id]
                 print('done!')
                 continue
