@@ -19,6 +19,8 @@ def walmart(product):
     all_data = []
 
     for i in resultsss:
+
+
         try:
             # each_product = []
 
@@ -26,9 +28,12 @@ def walmart(product):
             title = i.find('a',class_ = 'product-title-link line-clamp line-clamp-2 truncate-title').text
             # each_product.append(title)
 
-            ### to get the price of the product
-            price = i.find('span',class_ = 'price-group').text[1:]
-            # each_product.append(price)
+            # fefdssg
+            if len(i.find_all('span',class_ = 'price-subscription-interval-unit')) > 0  :
+                continue
+            else:
+                price = i.find('span',class_ = 'price-group').find('span', class_="price-characteristic").text
+
 
             #### to  get the url link for each product
             links = i.find('a',class_ = 'product-title-link line-clamp line-clamp-2 truncate-title').get('href')
