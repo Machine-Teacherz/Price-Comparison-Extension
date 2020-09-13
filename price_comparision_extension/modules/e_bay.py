@@ -44,6 +44,12 @@ def e_bay(product):
     #     writer = csv.writer(file, delimiter=',')
     #     writer.writerows(all_data)
 
+def e_bay_price(url):
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, 'html.parser').find('span',id='prcIsum').text.split(' ')[1]
+    return soup
+
+
 if __name__ == "__main__":
     print(e_bay('apple watch'))
 
