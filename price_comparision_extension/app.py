@@ -143,3 +143,22 @@ def get_prices():
         what_do_u_want()
 
     
+    def sign_in():
+        global user
+        with open('../users.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            new_list = [[ii for ii in i] for i in csv_reader]
+
+        while True:
+                user = input('\nwhat is your name? : ')
+                y = False
+                for i in new_list:
+                    if user in i:
+                        password = input('your password : ')
+                        if password == i[1]:
+                            print(f'\nWelcome back {user}.. :)')
+                            y = True
+                        else:
+                            print('wrong password!!')
+                            continue
+                if y:
