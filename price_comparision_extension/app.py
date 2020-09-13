@@ -2,7 +2,6 @@ from modules.e_bay import e_bay
 from modules.etsy import etsy
 from modules.newegg import newegg
 from modules.walmart import walmart
-import json
 import csv
 import datetime
 import sys
@@ -179,9 +178,10 @@ def get_prices():
                 sign_up()
                 break
 
+
     print('\nWelcome to Price-Compersion-App\n')
     main_nav()
-# def save_choice(list):
+
 
 
 
