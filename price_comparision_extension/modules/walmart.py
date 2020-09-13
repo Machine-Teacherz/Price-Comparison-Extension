@@ -21,12 +21,6 @@ def walmart(product):
     for i in resultsss:
         
 
-        if len(i.find_all('span',class_ = 'price-subscription-interval-unit')) > 0  :
-            continue
-        else:
-            price = i.find('span',class_ = 'price-group').find('span', class_="price-characteristic").text
-
-
 
         try:
             # each_product = []
