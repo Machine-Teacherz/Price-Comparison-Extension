@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import csv
+from modules.helpres import Product
+
 
 def e_bay(product):
     """
@@ -12,30 +14,38 @@ def e_bay(product):
     url = f'https://www.ebay.com/sch/i.html?_nkw={product}'
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
-    all_data = [['title','price','links']]
+    # all_data = [['title','price','links']]
+    all_data = []
 
     elements = soup.find_all('li',class_ = 's-item')
 
     for li in elements:
         try:
-            one_item = []
+            # one_item = []
             title = li.find('h3').text
-            one_item.append(title)
-            price = li.find('span',class_ = 's-item__price').text.split(' ')[0]
-            one_item.append(price)
+            # one_item.append(title)
+            price = li.find('span',class_ = 's-item__price').text[1:]
+            # print(price)
+            # one_item.append(price)
             link = li.find('a',class_ = 's-item__link').get('href')
-            one_item.append(link)
+            # one_item.append(link)
+            one_item = Product(title, price, link, 'e_bay')
             all_data.append(one_item)
+
+            if len(all_data) == 5:
+                break
 
         except:
             continue
 
-    with open('ebay_data.csv', 'w', newline='') as file:
-        writer = csv.writer(file, delimiter=',')
-        writer.writerows(all_data)
+    return all_data
+
+    # with open('ebay_data.csv', 'w', newline='') as file:
+    #     writer = csv.writer(file, delimiter=',')
+    #     writer.writerows(all_data)
 
 if __name__ == "__main__":
-    e_bay('apple watch')
+    print(e_bay('apple watch'))
 
 
 
