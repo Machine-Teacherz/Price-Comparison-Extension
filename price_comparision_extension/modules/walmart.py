@@ -19,16 +19,26 @@ def walmart(product):
     all_data = []
 
     for i in resultsss:
+        
+
+        if len(i.find_all('span',class_ = 'price-subscription-interval-unit')) > 0  :
+            continue
+        else:
+            price = i.find('span',class_ = 'price-group').find('span', class_="price-characteristic").text
+
+
+
         try:
             # each_product = []
 
             ### to get the name of the product
             title = i.find('a',class_ = 'product-title-link line-clamp line-clamp-2 truncate-title').text
             # each_product.append(title)
-
-            ### to get the price of the product
-            price = i.find('span',class_ = 'price-group').text[1:]
-            # each_product.append(price)
+            
+            if len(i.find_all('span',class_ = 'price-subscription-interval-unit')) > 0  :
+                continue
+            else:
+                price = i.find('span',class_ = 'price-group').find('span', class_="price-characteristic").text
 
             #### to  get the url link for each product
             links = i.find('a',class_ = 'product-title-link line-clamp line-clamp-2 truncate-title').get('href')
@@ -58,6 +68,14 @@ def walmart(product):
     #     writer = csv.writer(file, delimiter=',')
     #     writer.writerows(all_data)  
 
+def wal_price(url):
+    page = requests.get(url)
+
+    soup = BeautifulSoup(page.content, 'html.parser').find('span',class_ = 'price-characteristic').get('content')
+    return soup
+
 
 if __name__ == "__main__":
-    print(walmart('tv'))
+    # print(wal_price('https://www.walmart.com/ip/onn-32-Class-720P-HD-LED-Roku-Smart-TV/314022535'))
+    print(wal_price('https://www.walmart.com/ip/Straight-Talk-Apple-iPhone-11-Pro-Max-with-64GB-Silver/674137394'))
+    # print(walmart('iphone11'))
