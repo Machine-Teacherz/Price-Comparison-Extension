@@ -134,3 +134,12 @@ def get_prices():
                     continue
                 else:
                     break
+
+            password = input('your password : ')
+        with open('../users.csv', 'a', newline='') as file:
+            writer = csv.writer(file, delimiter=',')
+            writer.writerows([[user, password]])
+            file.close()
+        what_do_u_want()
+
+    
