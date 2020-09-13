@@ -37,3 +37,16 @@ def get_prices():
         print('\nplaese wait...')
         all_objects = e_bay(product)
         newlist = sorted(all_objects, key=lambda x: x.price)
+        for i in range(len(newlist)):
+            print(i+1, newlist[i])
+        sure = input('\nwant to save any of them? (y)es or (n)o? ').lower()
+        while True:
+            if sure == 'y':
+                choice_pro = int(input('\nwitch one you want to save? : '))
+                print(newlist[choice_pro-1])
+
+                with open('../saves.csv', 'a', newline='') as file:
+                    writer = csv.writer(file, delimiter=',')
+                    writer.writerows([[user,newlist[choice_pro-1].title,newlist[choice_pro-1].link, newlist[choice_pro-1].website, newlist[choice_pro-1].price, datetime.datetime.now()]])
+                print('\n add to your favorite.. :)')
+ 
