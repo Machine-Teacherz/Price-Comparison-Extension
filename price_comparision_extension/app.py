@@ -74,8 +74,8 @@ def get_prices():
                 #         new_line = # etsy link method
 
 
-                    new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,datetime.datetime.now()
-                    continue
+                    # new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,datetime.datetime.now()
+                    # continue
 
                 
 
