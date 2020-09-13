@@ -28,7 +28,7 @@ def walmart(product):
             ### to get the name of the product
             title = i.find('a',class_ = 'product-title-link line-clamp line-clamp-2 truncate-title').text
             # each_product.append(title)
-            
+            # fefdssg
             if len(i.find_all('span',class_ = 'price-subscription-interval-unit')) > 0  :
                 continue
             else:
