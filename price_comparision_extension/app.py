@@ -44,13 +44,24 @@ def get_prices():
             csv_reader = csv.reader(csv_file, delimiter=',')
             new_list = [[ii for ii in i] for i in csv_reader]
 
+            print('product id , -------product name------- , ---website--- , ---price--- , ---date--- \n')
             y = False
             for i in new_list:
                 if user == i[0]:
-                    print(f'{i[1]} from {i[3]} and it was {i[4]}$ , it had been add in {i[5]}\n')
+                    print(f'{i}, {i[1]} from {i[3]} and it was {i[4]}$ , last cheak was in: {i[5]}\n')
                     y = True
             if not y:
                 print('your favorite still empty.. :(')
+            
+            choice = input('want to edit your fav?\n - (d)elete products\n - (r)e cheak product price\n\n (n)o thank you..').lower()
+            while choice not 'n':
+                if choice == 'd':
+                    choice_pro_id = input('insert your product id : ')
+                    del new_list[choice_pro_id]
+                    print('done!')
+                
+
+            what_do_u_want()
     
     def sign_up():
         with open('../users.csv', 'r') as csv_file:
