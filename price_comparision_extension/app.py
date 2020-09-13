@@ -104,3 +104,14 @@ def get_prices():
 
 
                 # new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,datetime.datetime.now()
+                # continue
+
+        with open('../saves.csv', 'w') as writeFile:
+
+            writer = csv.writer(writeFile)
+
+            writer.writerows(last_list)   
+            writer.writerows(new_list)   
+
+        what_do_u_want()
+    
