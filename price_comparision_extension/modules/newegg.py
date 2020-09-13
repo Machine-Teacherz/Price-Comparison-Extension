@@ -56,6 +56,22 @@ def newegg(product):
     #     writer = csv.writer(file, delimiter=',')
     #     writer.writerows(all_data)
 
+def newegg_price(url):
+    
+    page1 = requests.get(url)
+    soup1 = BeautifulSoup(page1.content, 'html.parser')
+    title = soup1.find('h1',id="grpDescrip_h").text.strip()
+    serial = soup1.find('li',class_='is-current').text[7:]
+
+    link = f'https://www.newegg.com/p/pl?d={title}'
+    page2 = requests.get(link)
+    soup2 = BeautifulSoup(page2.content, 'html.parser')
+    elements = soup2.find_all('div',class_ = 'item-cell')
+    
+    for div in elements:
+        if str(serial) in str(div):
+            return div.find('li',class_ = 'price-current').find('strong').text
+
 if __name__ == "__main__":
     print(newegg('tv'))
             
