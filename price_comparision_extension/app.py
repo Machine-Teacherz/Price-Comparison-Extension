@@ -27,4 +27,13 @@ def get_prices():
                 main_nav()
                 break
             elif choice == 'ex':
- 
+                sys.exit("\nThank you for using our tool.. :)")
+            
+            choice = input(f'\n\nwhat do you want to do {user}?\n - (n)ew search?\n - (v)iew my favorite?\n - (s)ign out\n - (ex)it\n > ').lower()
+
+    def new_search():
+        global user
+        product = input('\nwhat are you looking for? : ')
+        print('\nplaese wait...')
+        all_objects = e_bay(product)
+        newlist = sorted(all_objects, key=lambda x: x.price)
