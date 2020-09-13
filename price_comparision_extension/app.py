@@ -162,3 +162,19 @@ def get_prices():
                             print('wrong password!!')
                             continue
                 if y:
+                    break
+                else:
+                    print('user not found!')
+                    continue
+        what_do_u_want()
+
+    def main_nav():
+        while True:
+            first = input('\nsign(in) OR sign(up)? ').lower()
+            if first == 'in':
+                sign_in()
+                break
+            elif first == 'up':
+                sign_up()
+                break
+
