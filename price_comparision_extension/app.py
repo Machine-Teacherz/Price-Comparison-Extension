@@ -178,3 +178,13 @@ def get_prices():
                 sign_up()
                 break
 
+
+    print('\nWelcome to Price-Compersion-App\n')
+    main_nav()
+
+
+
+
+if __name__ == '__main__':
+    # print(get_prices('apple watch'))
+    get_prices()
