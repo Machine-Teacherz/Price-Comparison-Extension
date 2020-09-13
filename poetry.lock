@@ -100,6 +100,18 @@ python-versions = "*"
 version = "0.6.1"
 
 [[package]]
+category = "main"
+description = "A Python implementation of the Panda REST interface"
+name = "panda"
+optional = false
+python-versions = "*"
+version = "0.3.1"
+
+[package.dependencies]
+requests = "*"
+setuptools = "*"
+
+[[package]]
 category = "dev"
 description = "python code static checker"
 name = "pylint"
@@ -178,7 +190,7 @@ python-versions = "*"
 version = "1.12.1"
 
 [metadata]
-content-hash = "c2180faf6153da48ae6de1f1b846234148ea5788b11380e1a27e8b783976777e"
+content-hash = "85568f30cd91dae9416937abe5ea2f0705e61793d5f7641b250c8439cc7c9e4e"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -241,6 +253,9 @@ lazy-object-proxy = [
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
     {file = "mccabe-0.6.1.tar.gz", hash = "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"},
+]
+panda = [
+    {file = "panda-0.3.1.tar.gz", hash = "sha256:f213b848f09268b3e9fce0e103155ab003217c0e27f6048b6194e7f90bb2b716"},
 ]
 pylint = [
     {file = "pylint-2.6.0-py3-none-any.whl", hash = "sha256:bfe68f020f8a0fece830a22dd4d5dddb4ecc6137db04face4c3420a46a52239f"},
