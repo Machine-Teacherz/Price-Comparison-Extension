@@ -93,9 +93,10 @@ def get_prices():
                 print('done!')
                 continue
             elif choice == 'r':
-                choice_pro_id = input('\ninsert your product id : ')
+                choice_pro_id = int(input('\ninsert your product id : '))
                 if new_list[choice_pro_id][3] == 'e_bay':
                     new_line = e_bay_price(new_list[choice_pro_id][2])
+                    print(new_line, now)
                 elif new_list[choice_pro_id][3] == 'walmart':
                     new_line = wal_price(new_list[choice_pro_id][2])
                 elif new_list[choice_pro_id][3] == 'newegg':
@@ -103,9 +104,8 @@ def get_prices():
                 elif new_list[choice_pro_id][3] == 'etsy':
                     new_line = etsy_price(new_list[choice_pro_id][2])
 
-
-                # new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,now)
-                # continue
+                new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,now
+                continue
 
         with open('../saves.csv', 'w') as writeFile:
 
