@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import csv
-# from modules.helpres import Product
+from modules.helpres import Product
 
 
 def e_bay(product):
@@ -44,16 +44,21 @@ def e_bay(product):
     #     writer = csv.writer(file, delimiter=',')
     #     writer.writerows(all_data)
 
-def e_bay_price(url):
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser').find('span',itemprop='price')
-    if 'GBP' in str(soup):
-        soup = BeautifulSoup(page.content, 'html.parser').find('div',class_='notranslate u-cb convPrice vi-binConvPrc padT10').find('span').text.replace('(',' ').split(' ')[1]
-    
-    else:
-        soup = soup.text.split(' ')[1]
 
-    return soup
+def e_bay_price(url):
+    try:
+        page = requests.get(url)
+        soup = BeautifulSoup(page.content, 'html.parser').find('span',itemprop='price')
+        if '$' in str(soup):
+            soup = soup.text.split(' ')[1]
+        
+        else:
+            soup = BeautifulSoup(page.content, 'html.parser').find('div',class_='notranslate u-cb convPrice vi-binConvPrc padT10').find('span').text.replace('(',' ').split(' ')[1]
+
+        return soup
+    except:
+        soup = BeautifulSoup(page.content, 'html.parser').find('div',class_='notranslate u-cb convPrice').find('span').text.replace('(',' ').split(' ')[1]
+        return soup
 
 
 if __name__ == "__main__":
