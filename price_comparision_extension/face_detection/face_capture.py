@@ -10,7 +10,8 @@ def capture_img () :
     your_name = input('input your name >>   ').upper()
     print ( 'press s to take photo ')
     print ( 'press q to quiet ')
-    cam = cv2.VideoCapture(0)   
+    cam = cv2.VideoCapture(0)  
+    img = None 
     while True :
         s, img = cam.read()
         cv2.imshow('webcam',img)
@@ -22,11 +23,36 @@ def capture_img () :
                 cv2.destroyWindow("cam-test")
                 cv2.imwrite(f"price_comparision_extension/face_detection/photos/{your_name}.jpg",img)
 
-                return img
         if key == ord('q') :
-            break
+                break
+
+    images ,photos_names = lists_img()
+    x= None
+    
+    encode_list = find_encodings(images)
+    if len(face_recognition.face_encodings(img))  > 0 : 
 
 
+        encode_one = face_recognition.face_encodings(img)[0]
+        for encode_img in encode_list : 
+            results = face_recognition.compare_faces([encode_one],encode_img)
+            if results[0] == True : 
+                x = True
+
+            else :
+               x =  False
+    else : 
+           print("No faces found in the image!")
+
+
+    if x == True :
+        try: 
+            os.remove(f"price_comparision_extension/face_detection/photos/{your_name}.jpg")
+        except: pass
+
+
+
+    return x , your_name
 
         
 
@@ -41,7 +67,6 @@ def lists_img() :
     photos_names = []
 
     mylist = os.listdir(path)
-    # print(mylist)
 
     for ph in mylist :
         cur_img = cv2.imread(f'{path}/{ph}')
@@ -67,41 +92,6 @@ def find_encodings(imgs) :
 
 
 
-def check_img() :
-    images ,photos_names = lists_img()
-    x= None
-    img = capture_img()
-    encode_list = find_encodings(images)
-    if len(face_recognition.face_encodings(img))  > 0 : 
-
-
-        encode_one = face_recognition.face_encodings(img)[0]
-        for encode_img in encode_list : 
-            results = face_recognition.compare_faces([encode_one],encode_img)
-            if results[0] == True : 
-                x = True
-            else :
-               x =  False
-    else : 
-           print("No faces found in the image!")
-
-
-    if x == True :
-        try: 
-            os.remove(img)
-        except: pass
-
-    return x
-    
-
 
 if __name__ == "__main__":
-
-
-
-
-
-
-
-    print(check_img())
-    # print(capture_img())
+    pass
