@@ -11,9 +11,8 @@ user = None
 
 def get_prices():
 
-    
-    now = datetime.datetime.now()
-    now = now.strftime("%Y-%m-%d %H:%M:%S")
+
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     def what_do_u_want():
         choice = input(f'\n\nwhat do you want to do {user}?\n - (n)ew search?\n - (v)iew my favorite?\n - (s)ign out\n - (ex)it\n > ').lower()
@@ -46,7 +45,7 @@ def get_prices():
                 choice_pro = int(input('\nwitch one you want to save? : '))
                 print(newlist[choice_pro-1])
 
-                with open('../saves.csv', 'a', newline='') as file:
+                with open('../../saves.csv', 'a', newline='') as file:
                     writer = csv.writer(file, delimiter=',')
                     writer.writerows([[user,newlist[choice_pro-1].title,newlist[choice_pro-1].link, newlist[choice_pro-1].website, newlist[choice_pro-1].price, now]])
                 print('\n add to your favorite.. :)')
@@ -61,7 +60,7 @@ def get_prices():
     def view_my_fav():
         choice = None
         new_list = []
-        with open('../saves.csv', 'r') as csv_file:
+        with open('../../saves.csv', 'r') as csv_file:
 
             csv_reader = csv.reader(csv_file, delimiter=',')
             new_list = [[ii for ii in i] for i in csv_reader]
@@ -107,7 +106,7 @@ def get_prices():
                 new_list[choice_pro_id][4],new_list[choice_pro_id][5] = new_line,now
                 continue
 
-        with open('../saves.csv', 'w') as writeFile:
+        with open('../../saves.csv', 'w') as writeFile:
 
             writer = csv.writer(writeFile)
 
@@ -119,7 +118,7 @@ def get_prices():
 
     def sign_up():
         global user
-        with open('../users.csv', 'r') as csv_file:
+        with open('../../users.csv', 'r') as csv_file:
 
             csv_reader = csv.reader(csv_file, delimiter=',')
             new_list = [[ii for ii in i] for i in csv_reader]
@@ -137,7 +136,7 @@ def get_prices():
                     break
 
             password = input('your password : ')
-        with open('../users.csv', 'a', newline='') as file:
+        with open('../../users.csv', 'a', newline='') as file:
             writer = csv.writer(file, delimiter=',')
             writer.writerows([[user, password]])
             file.close()
@@ -146,7 +145,7 @@ def get_prices():
     
     def sign_in():
         global user
-        with open('../users.csv') as csv_file:
+        with open('../../users.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             new_list = [[ii for ii in i] for i in csv_reader]
 

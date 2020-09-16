@@ -2,14 +2,15 @@ import cv2
 import numpy as np 
 import face_recognition  
 import os
-
+import time
+from datetime import datetime
 
 
 
 
 
 def lists_img() :
-    path = 'price_comparision_extension/face_detection/photos'
+    path = 'face_detection/photos'
 
     images = []
 
@@ -41,7 +42,9 @@ def find_encodings(imgs) :
     return encode_list
 
 def find_face () :
+    now = datetime.now().second
     cap = cv2.VideoCapture(0)
+
     images , photos_names = lists_img()
     encode_lest_known = find_encodings(images)
     
@@ -51,38 +54,37 @@ def find_face () :
         img_small = cv2.cvtColor(img_small,cv2.COLOR_BGR2RGB)
         faces_curr_frame = face_recognition.face_locations(img_small)
         encod_curr_frame = face_recognition.face_encodings(img_small,faces_curr_frame)
-
         for encode_face , face_loc in zip(encod_curr_frame , faces_curr_frame) :
             matches = face_recognition.compare_faces(encode_lest_known,encode_face)
             face_distance  = face_recognition.face_distance(encode_lest_known,encode_face)
             matche_index = np.argmin(face_distance)
 
-            if matches[matche_index] : 
+            if matches[matche_index] :
                 name = photos_names[matche_index].upper()
                 y1,x2,y2,x1 = face_loc
                 y1, x2, y2, x1 = y1*4,x2*4,y2*4,x1*4
                 cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
                 cv2.rectangle(img,(x1,y2-35),(x2,y2),(0,255,0),cv2.FILLED)
                 cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
-
+                cv2.destroyWindow("webcam")
                 return name
-                
-            else : 
+
+            else :
 
                 y1,x2,y2,x1 = face_loc
                 y1, x2, y2, x1 = y1*4,x2*4,y2*4,x1*4
                 cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
                 cv2.rectangle(img,(x1,y2-35),(x2,y2),(0,255,0),cv2.FILLED)
                 cv2.putText(img,'none',(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2)
-
+                cv2.destroyWindow("webcam")
                 return 'None'
 
-
-
         cv2.imshow('webcam',img)
+
         key = cv2.waitKey(2)
 
         if key == ord('q') :
+            cv2.destroyWindow("webcam")
             break
 
 if __name__ == "__main__":
